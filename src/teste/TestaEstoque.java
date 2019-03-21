@@ -33,7 +33,16 @@ public class TestaEstoque {
 		lista.insere(p3);
 		Assert.assertEquals(true, lista.existe("farinha"));
 		Assert.assertEquals(false, lista.existe("macarrao"));
-//		lista.atualiza("farinha", 25);
-//		Assert.assertEquals(25, p3.getQuantidade());
+		lista.atualiza("farinha", 25);
+		Assert.assertEquals(25, p3.getQuantidade());
+	}
+	
+	@Test
+	public void testaEstoque() {
+		// create some products
+		// create a Estoque instance
+		// buy some products and test his values
+		// sell some products and test his values
+		// create a new product and update his values
 	}
 }

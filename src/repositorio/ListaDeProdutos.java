@@ -37,14 +37,36 @@ public class ListaDeProdutos {
 	public boolean atualiza(String nome, int quantidade) {
 		if (this.produto == null) {
 			return false;
-		} else if (this.produto.getNome() == nome) {
-			if (this.produto.getQuantidade() < quantidade) {
-				return false;
-			}
+		} else if (this.produto.getNome().equals(nome)) {
 			this.produto.setQuantidade(quantidade);
 			return true;
 		} else if (this.prox.produto != null) {
 			return this.prox.atualiza(nome, quantidade);
+		} else {
+			return false;
+		}
+	}
+	
+	public Produto pesquisaProduto(String nome) {
+		if (this.produto == null) {
+			return null;
+		} else if (this.produto.getNome().equals(nome)) {
+			return this.produto;
+		} else if (this.prox != null) {
+			return this.prox.pesquisaProduto(nome);
+		} else {
+			return null;
+		}
+	}
+	
+	public boolean atualizaProduto(Produto produto) {
+		if (this.produto == null) {
+			return false;
+		} else if (this.produto.getNome().equals(produto.getNome())) {
+			this.produto = produto;
+			return true;
+		} else if (this.prox != null) {
+			return this.prox.atualizaProduto(produto);
 		} else {
 			return false;
 		}

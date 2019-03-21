@@ -5,7 +5,11 @@ import produto.Produto;
 
 // representation of a stock of products
 public class Estoque {
-	private ListaDeProdutos estoque = new ListaDeProdutos();
+	private ListaDeProdutos estoque;
+	
+	public Estoque() {
+		estoque = new ListaDeProdutos();
+	}
 
 	// buy a product deducing the amount in stock
 	public void comprar(Produto produto) {
@@ -17,7 +21,7 @@ public class Estoque {
 		if (this.estoque == null) {
 			this.estoque.insere(produto);
 		} else if (this.estoque.existe(produto.getNome())) {
-			this.atualizaProduto(produto);
+			this.compraProduto(produto);
 		} else {
 			this.estoque.insere(produto);
 		}
@@ -39,12 +43,20 @@ public class Estoque {
 		}
 	}
 
-	private void atualizaProduto(Produto produto) {
-		if (this.estoque.produto.getNome() == produto.getNome()) {
+	private void compraProduto(Produto produto) {
+		if (this.estoque.produto.getNome().equals(produto.getNome())) {
 			this.estoque.produto.comprar(produto.getQuantidade());
 		} else if (this.estoque.prox != null) {
 			this.estoque.prox.produto.comprar(produto.getQuantidade());
 		}
+	}
+	
+	public Produto pesquisaProduto(String nome) {
+		return this.estoque.pesquisaProduto(nome);
+	}
+	
+	public boolean atualizaProduto(Produto p) {
+		return this.atualizaProduto(p);
 	}
 
 }
